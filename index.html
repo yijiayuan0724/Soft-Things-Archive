@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Very Serious Archive of Very Soft Things</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Original vector doodles. The filter creates broken, grainy wax-pencil marks. -->
+  <svg class="drawing-definitions" aria-hidden="true" width="0" height="0">
+    <defs>
+      <filter id="wax" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="12" result="grain"/>
+        <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 3 -0.85" result="holes"/>
+        <feComposite in="SourceGraphic" in2="holes" operator="in"/>
+      </filter>
+      <symbol id="flower-doodle" viewBox="0 0 180 200">
+        <g filter="url(#wax)" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M91 110 Q80 155 95 190 M89 165 Q48 126 45 155 Q61 177 89 170 M92 175 Q131 133 137 157 Q124 182 92 180" fill="none" stroke="#80b36e" stroke-width="10"/>
+          <path d="M87 78 C26 60 36 23 67 37 C70 -4 117 6 110 42 C161 13 173 66 127 80 C166 113 132 143 105 106 C84 159 46 130 67 99 C13 112 14 63 57 70" fill="none" stroke="#96c1dd" stroke-width="14"/>
+          <circle cx="90" cy="78" r="21" fill="#ed9db6"/><path d="M80 83 Q91 94 102 80" fill="none" stroke="#ba5976" stroke-width="4"/>
+        </g>
+      </symbol>
+      <symbol id="bow-doodle" viewBox="0 0 180 160">
+        <g filter="url(#wax)" fill="none" stroke="#e779a1" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M83 68 Q5 3 18 61 Q21 115 82 78 M95 67 Q164 2 166 56 Q177 102 98 79 M79 70 Q91 54 102 73 L94 87 L80 81 Z M83 83 Q67 116 33 140 L64 134 L77 145 Q94 115 88 84 M98 85 Q110 123 143 138 L132 113 L152 113 Q115 106 98 85"/>
+          <path d="M28 43 L68 66 M119 63 L153 45" stroke="#96c1dd" stroke-width="5"/>
+        </g>
+      </symbol>
+      <symbol id="star-doodle" viewBox="0 0 100 100"><path filter="url(#wax)" d="M50 8 L61 36 L93 38 L68 58 L76 91 L49 71 L21 89 L31 57 L8 36 L39 36 Z" fill="#f8e473" stroke="#e2b748" stroke-width="5" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+  <header class="site-header">
+    <a class="site-name" href="#top">The Soft Things Archive</a>
+    <a class="directory-link" href="#family-directory">Meet the families ↓</a>
+  </header>
+
+  <main id="top">
+    <section class="home-intro" aria-labelledby="main-title">
+      <p class="tiny-note">A very soft family album</p>
+      <svg class="sticker flower-sticker" aria-hidden="true"><use href="#flower-doodle"/></svg>
+      <svg class="sticker bow-sticker" aria-hidden="true"><use href="#bow-doodle"/></svg>
+      <svg class="sticker star-sticker" aria-hidden="true"><use href="#star-doodle"/></svg>
+      <h1 id="main-title" class="brush-title"><span>A Very</span> <span>Serious</span> <span>Archive</span><br><span>of Very</span> <span>Soft</span> <span>Things</span></h1>
+      <p class="welcome">
+        Please meet my very large, very soft, and slightly overcrowded family.
+        Every member carries a memory.
+      </p>
+
+      <figure class="full-family-photo crayon-frame">
+        <img
+          src="assets/images/family-portraits/whole-collection.jpg"
+          alt="My full stuffed-animal collection gathered for a family portrait"
+        >
+        <figcaption>Everyone together, almost holding still.</figcaption>
+      </figure>
+
+      <a class="soft-button" href="#family-directory">Meet the families</a>
+    </section>
+
+    <section id="family-directory" class="family-directory" aria-labelledby="directory-title">
+      <p class="tiny-note">The family directory</p>
+      <h2 id="directory-title" class="brush-heading">Choose a family to visit</h2>
+      <p class="section-intro">
+        Click a family portrait to enter their page. Use the arrow in the upper-left
+        corner to come back and visit another family.
+      </p>
+
+      <div class="family-grid">
+        <a class="family-card pink-card" href="#bear-family">
+          <img src="assets/images/family-portraits/bear-family.jpg" alt="The Bear Family">
+          <span>Bear Family</span>
+        </a>
+
+        <a class="family-card blue-card" href="#bunny-family">
+          <img src="assets/images/family-portraits/bunny-family.jpg" alt="The Bunny Family">
+          <span>Bunny Family</span>
+        </a>
+
+        <a class="family-card yellow-card" href="#food-family">
+          <img src="assets/images/family-portraits/food-family.jpg" alt="The Food Family">
+          <span>Food Family</span>
+        </a>
+
+        <a class="family-card green-card" href="#vegetable-family">
+          <img src="assets/images/family-portraits/vegetable-family.jpg" alt="The Vegetable Family">
+          <span>Vegetable Family</span>
+        </a>
+
+        <a class="family-card lavender-card" href="#family-five">
+          <div class="photo-placeholder" role="img" aria-label="Placeholder for Family Five photograph">
+            Add Family 5 photo
+          </div>
+          <span>Family Five</span>
+        </a>
+
+        <a class="family-card peach-card" href="#family-six">
+          <div class="photo-placeholder" role="img" aria-label="Placeholder for Family Six photograph">
+            Add Family 6 photo
+          </div>
+          <span>Family Six</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="ending" aria-labelledby="ending-title">
+      <div class="confetti" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <img
+        class="bouncing-toy toy-left"
+        src="assets/images/individual-toys/pink-bunny.jpg"
+        alt="Pink Bunny celebrating"
+      >
+
+      <div class="ending-message">
+        <p class="tiny-note">You made it!</p>
+        <h2 id="ending-title" class="brush-heading">So many soft things.<br>So many little stories.</h2>
+        <p>Thank you for visiting us. Come back whenever you need something soft.</p>
+      </div>
+
+      <img
+        class="bouncing-toy toy-right"
+        src="assets/images/individual-toys/brown-bear.jpg"
+        alt="Brown Bear celebrating"
+      >
+    </section>
+  </main>
+
+  <footer>
+    <p>Archived with care by Cecilia Yuan.</p>
+  </footer>
+
+  <!-- FAMILY 1: BEARS -->
+  <section id="bear-family" class="family-page pink-page" aria-labelledby="bear-title">
+    <a class="back-arrow" href="#family-directory" aria-label="Back to the family directory">← <span>Back to all families</span></a>
+    <div class="family-page-inner">
+      <p class="tiny-note">Family No. 1</p>
+      <h2 id="bear-title" class="brush-heading">The Bear Family</h2>
+      <p class="family-introduction">A short introduction to the Bear Family can go here.</p>
+
+      <figure class="family-group-photo crayon-frame">
+        <img src="assets/images/family-portraits/bear-family.jpg" alt="The Bear Family together">
+        <figcaption>The Bear Family portrait</figcaption>
+      </figure>
+
+      <section class="special-members" aria-labelledby="bear-members">
+        <h3 id="bear-members" class="crayon-subtitle">Special Members</h3>
+        <p>Click a name to open the memory carried by that toy.</p>
+        <div class="member-grid">
+          <article class="member-card">
+            <img src="assets/images/individual-toys/brown-bear.jpg" alt="Brown Bear">
+            <details>
+              <summary>Brown Bear</summary>
+              <div class="member-story">
+                <p class="member-fact">Bear Family</p>
+                <p>Replace this paragraph with Brown Bear's personal story and special meaning.</p>
+              </div>
+            </details>
+          </article>
+          <article class="member-card">
+            <div class="portrait-placeholder">Add portrait</div>
+            <details>
+              <summary>Member Two</summary>
+              <div class="member-story"><p>Add this member's story here.</p></div>
+            </details>
+          </article>
+          <article class="member-card">
+            <div class="portrait-placeholder">Add portrait</div>
+            <details>
+              <summary>Member Three</summary>
+              <div class="member-story"><p>Add this member's story here.</p></div>
+            </details>
+          </article>
+          <article class="member-card">
+            <div class="portrait-placeholder">Add portrait</div>
+            <details>
+              <summary>Member Four</summary>
+              <div class="member-story"><p>Add this member's story here.</p></div>
+            </details>
+          </article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- FAMILY 2: BUNNIES -->
+  <section id="bunny-family" class="family-page blue-page" aria-labelledby="bunny-title">
+    <a class="back-arrow" href="#family-directory" aria-label="Back to the family directory">← <span>Back to all families</span></a>
+    <div class="family-page-inner">
+      <p class="tiny-note">Family No. 2</p>
+      <h2 id="bunny-title" class="brush-heading">The Bunny Family</h2>
+      <p class="family-introduction">A short introduction to the Bunny Family can go here.</p>
+      <figure class="family-group-photo crayon-frame">
+        <img src="assets/images/family-portraits/bunny-family.jpg" alt="The Bunny Family together">
+        <figcaption>The Bunny Family portrait</figcaption>
+      </figure>
+      <section class="special-members" aria-labelledby="bunny-members">
+        <h3 id="bunny-members" class="crayon-subtitle">Special Members</h3>
+        <p>Click a name to open the memory carried by that toy.</p>
+        <div class="member-grid">
+          <article class="member-card">
+            <img src="assets/images/individual-toys/pink-bunny.jpg" alt="Pink Bunny">
+            <details><summary>Pink Bunny</summary><div class="member-story"><p class="member-fact">Bunny Family</p><p>Replace this paragraph with Pink Bunny's personal story and special meaning.</p></div></details>
+          </article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Two</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Three</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Four</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- FAMILY 3: FOOD -->
+  <section id="food-family" class="family-page yellow-page" aria-labelledby="food-title">
+    <a class="back-arrow" href="#family-directory" aria-label="Back to the family directory">← <span>Back to all families</span></a>
+    <div class="family-page-inner">
+      <p class="tiny-note">Family No. 3</p>
+      <h2 id="food-title" class="brush-heading">The Food Family</h2>
+      <p class="family-introduction">A short introduction to the Food Family can go here.</p>
+      <figure class="family-group-photo crayon-frame">
+        <img src="assets/images/family-portraits/food-family.jpg" alt="The Food Family together">
+        <figcaption>The Food Family portrait</figcaption>
+      </figure>
+      <section class="special-members" aria-labelledby="food-members">
+        <h3 id="food-members" class="crayon-subtitle">Special Members</h3>
+        <p>Click a name to open the memory carried by that toy.</p>
+        <div class="member-grid">
+          <article class="member-card">
+            <img src="assets/images/individual-toys/bread-dog.jpg" alt="Bread Dog">
+            <details><summary>Bread Dog</summary><div class="member-story"><p class="member-fact">Food Family</p><p>Replace this paragraph with Bread Dog's personal story and special meaning.</p></div></details>
+          </article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Two</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Three</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Four</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- FAMILY 4: VEGETABLES -->
+  <section id="vegetable-family" class="family-page green-page" aria-labelledby="vegetable-title">
+    <a class="back-arrow" href="#family-directory" aria-label="Back to the family directory">← <span>Back to all families</span></a>
+    <div class="family-page-inner">
+      <p class="tiny-note">Family No. 4</p>
+      <h2 id="vegetable-title" class="brush-heading">The Vegetable Family</h2>
+      <p class="family-introduction">A short introduction to the Vegetable Family can go here.</p>
+      <figure class="family-group-photo crayon-frame">
+        <img src="assets/images/family-portraits/vegetable-family.jpg" alt="The Vegetable Family together">
+        <figcaption>The Vegetable Family portrait</figcaption>
+      </figure>
+      <section class="special-members" aria-labelledby="vegetable-members">
+        <h3 id="vegetable-members" class="crayon-subtitle">Special Members</h3>
+        <p>Click a name to open the memory carried by that toy.</p>
+        <div class="member-grid">
+          <article class="member-card">
+            <img src="assets/images/individual-toys/green-vegetable.jpg" alt="Green Vegetable toy">
+            <details><summary>Green Vegetable</summary><div class="member-story"><p class="member-fact">Vegetable Family</p><p>Replace this paragraph with this member's personal story and special meaning.</p></div></details>
+          </article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Two</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Three</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Four</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- FAMILY 5: NAME AND MATERIALS TO BE ADDED -->
+  <section id="family-five" class="family-page lavender-page" aria-labelledby="five-title">
+    <a class="back-arrow" href="#family-directory" aria-label="Back to the family directory">← <span>Back to all families</span></a>
+    <div class="family-page-inner">
+      <p class="tiny-note">Family No. 5</p>
+      <h2 id="five-title" class="brush-heading">Family Five</h2>
+      <p class="family-introduction">Replace this title and description when you decide on this family.</p>
+      <div class="family-group-photo photo-placeholder large-placeholder">Add this family's group photo</div>
+      <section class="special-members" aria-labelledby="five-members">
+        <h3 id="five-members" class="crayon-subtitle">Special Members</h3>
+        <div class="member-grid">
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member One</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Two</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Three</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- FAMILY 6: NAME AND MATERIALS TO BE ADDED -->
+  <section id="family-six" class="family-page peach-page" aria-labelledby="six-title">
+    <a class="back-arrow" href="#family-directory" aria-label="Back to the family directory">← <span>Back to all families</span></a>
+    <div class="family-page-inner">
+      <p class="tiny-note">Family No. 6</p>
+      <h2 id="six-title" class="brush-heading">Family Six</h2>
+      <p class="family-introduction">Replace this title and description when you decide on this family.</p>
+      <div class="family-group-photo photo-placeholder large-placeholder">Add this family's group photo</div>
+      <section class="special-members" aria-labelledby="six-members">
+        <h3 id="six-members" class="crayon-subtitle">Special Members</h3>
+        <div class="member-grid">
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member One</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Two</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+          <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Three</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
+        </div>
+      </section>
+    </div>
+  </section>
+</body>
+</html>
