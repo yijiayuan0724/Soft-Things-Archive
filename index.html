@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Very Serious Archive of Very Soft Things</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=ending-fix-2">
 </head>
 <body>
   <!-- Original vector doodles. The filter creates broken, grainy wax-pencil marks. -->
@@ -50,7 +50,7 @@
 
       <figure class="full-family-photo crayon-frame">
         <img
-          src="assets/images/family-portraits/whole-collection.jpg"
+          src="assets/images/family/full-family.jpg"
           alt="My full stuffed-animal collection gathered for a family portrait"
         >
         <figcaption>Everyone together, almost holding still.</figcaption>
@@ -69,42 +69,38 @@
 
       <div class="family-grid">
         <a class="family-card pink-card" href="#bear-family">
-          <img src="assets/images/family-portraits/bear-family.jpg" alt="The Bear Family">
+          <img src="assets/images/family/bear-family.jpg" alt="The Bear Family">
           <span>Bear Family</span>
         </a>
 
         <a class="family-card blue-card" href="#bunny-family">
-          <img src="assets/images/family-portraits/bunny-family.jpg" alt="The Bunny Family">
+          <img src="assets/images/family/bunny-family.jpg" alt="The Bunny Family">
           <span>Bunny Family</span>
         </a>
 
-        <a class="family-card yellow-card" href="#food-family">
-          <img src="assets/images/family-portraits/food-family.jpg" alt="The Food Family">
+        <a class="family-card yellow-card" href="#dragon-family">
+          <img src="assets/images/family/dragon-family.jpg" alt="The Dragon Family">
+          <span>Dragon Family</span>
+        </a>
+
+        <a class="family-card green-card" href="#food-family">
+          <img src="assets/images/family/food-family.jpg" alt="The Food Family">
           <span>Food Family</span>
         </a>
 
-        <a class="family-card green-card" href="#vegetable-family">
-          <img src="assets/images/family-portraits/vegetable-family.jpg" alt="The Vegetable Family">
-          <span>Vegetable Family</span>
+        <a class="family-card lavender-card" href="#other mammals">
+          <img src="assets/images/family/other-mammals.jpg" alt="The Other Mammals">
+          <span>Other Mammals</span>
         </a>
 
-        <a class="family-card lavender-card" href="#family-five">
-          <div class="photo-placeholder" role="img" aria-label="Placeholder for Family Five photograph">
-            Add Family 5 photo
-          </div>
-          <span>Family Five</span>
-        </a>
-
-        <a class="family-card peach-card" href="#family-six">
-          <div class="photo-placeholder" role="img" aria-label="Placeholder for Family Six photograph">
-            Add Family 6 photo
-          </div>
-          <span>Family Six</span>
+        <a class="family-card peach-card" href="#diverse creatures">
+         <img src="assets/images/family/diverse-creatures.jpg" alt="The Diverse Creatures">
+          <span>Diverse Creatures</span>
         </a>
       </div>
     </section>
 
-    <section class="ending" aria-labelledby="ending-title">
+    <section class="ending" aria-labelledby="ending-title" hidden style="display: none !important;">
       <div class="confetti" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span>
@@ -134,6 +130,10 @@
     <p>Archived with care by Cecilia Yuan.</p>
   </footer>
 
+  <!-- DESIGN PERSONA: Each member card is a quiet, slightly shy friend.
+       A large portrait introduces it; the handwritten name invites contact.
+       Hover/focus gives a small response. Clicking shares a memory in place.
+       Native details/summary supports both touch and keyboard interaction. -->
   <!-- FAMILY 1: BEARS -->
   <section id="bear-family" class="family-page pink-page" aria-labelledby="bear-title">
     <a class="back-arrow" href="#family-directory" aria-label="Back to the family directory">← <span>Back to all families</span></a>
@@ -149,7 +149,7 @@
 
       <section class="special-members" aria-labelledby="bear-members">
         <h3 id="bear-members" class="crayon-subtitle">Special Members</h3>
-        <p>Click a name to open the memory carried by that toy.</p>
+        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
         <div class="member-grid">
           <article class="member-card">
             <img src="assets/images/individual-toys/brown-bear.jpg" alt="Brown Bear">
@@ -200,7 +200,7 @@
       </figure>
       <section class="special-members" aria-labelledby="bunny-members">
         <h3 id="bunny-members" class="crayon-subtitle">Special Members</h3>
-        <p>Click a name to open the memory carried by that toy.</p>
+        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
         <div class="member-grid">
           <article class="member-card">
             <img src="assets/images/individual-toys/pink-bunny.jpg" alt="Pink Bunny">
@@ -227,7 +227,7 @@
       </figure>
       <section class="special-members" aria-labelledby="food-members">
         <h3 id="food-members" class="crayon-subtitle">Special Members</h3>
-        <p>Click a name to open the memory carried by that toy.</p>
+        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
         <div class="member-grid">
           <article class="member-card">
             <img src="assets/images/individual-toys/bread-dog.jpg" alt="Bread Dog">
@@ -254,7 +254,7 @@
       </figure>
       <section class="special-members" aria-labelledby="vegetable-members">
         <h3 id="vegetable-members" class="crayon-subtitle">Special Members</h3>
-        <p>Click a name to open the memory carried by that toy.</p>
+        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
         <div class="member-grid">
           <article class="member-card">
             <img src="assets/images/individual-toys/green-vegetable.jpg" alt="Green Vegetable toy">
@@ -278,6 +278,7 @@
       <div class="family-group-photo photo-placeholder large-placeholder">Add this family's group photo</div>
       <section class="special-members" aria-labelledby="five-members">
         <h3 id="five-members" class="crayon-subtitle">Special Members</h3>
+        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
         <div class="member-grid">
           <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member One</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
           <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Two</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
@@ -297,6 +298,7 @@
       <div class="family-group-photo photo-placeholder large-placeholder">Add this family's group photo</div>
       <section class="special-members" aria-labelledby="six-members">
         <h3 id="six-members" class="crayon-subtitle">Special Members</h3>
+        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
         <div class="member-grid">
           <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member One</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
           <article class="member-card"><div class="portrait-placeholder">Add portrait</div><details><summary>Member Two</summary><div class="member-story"><p>Add this member's story here.</p></div></details></article>
@@ -305,5 +307,35 @@
       </section>
     </div>
   </section>
+  <script>
+    // A visit means opening a family's page, not opening every member's story.
+    // Start fresh on every page load. Hash navigation keeps this set alive.
+    (() => {
+      const families = new Set(
+        Array.from(document.querySelectorAll('.family-page'), page => page.id)
+      );
+      const ending = document.querySelector('.ending');
+      const visited = new Set();
+
+      function updateVisits() {
+        const currentPage = window.location.hash.slice(1);
+        if (families.has(currentPage)) {
+          visited.add(currentPage);
+        }
+        // Reveal only on the home page after all distinct families were opened.
+        ending.hidden = families.size === 0 ||
+          visited.size !== families.size || families.has(currentPage);
+        if (ending.hidden) {
+          ending.style.setProperty('display', 'none', 'important');
+        } else {
+          ending.style.removeProperty('display');
+        }
+      }
+
+      window.addEventListener('hashchange', updateVisits);
+      window.addEventListener('pageshow', updateVisits);
+      updateVisits();
+    })();
+  </script>
 </body>
 </html>
