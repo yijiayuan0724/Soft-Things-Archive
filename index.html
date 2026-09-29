@@ -5,6 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Very Serious Archive of Very Soft Things</title>
   <link rel="stylesheet" href="style.css?v=family-memories-3">
+
+  <!-- Scoped overrides keep individual toys frameless with your existing stylesheet. -->
+  <style>
+    .member-card, .member-card details, .member-card .toy-trigger,
+    .member-card .toy-trigger:hover, .member-card details[open] .toy-trigger {
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+    .member-card .toy-trigger {
+      display: block; padding: 0; cursor: pointer; list-style: none;
+      filter: none; text-decoration: none;
+    }
+    .member-card .toy-trigger::-webkit-details-marker { display: none; }
+    .member-card .toy-trigger::marker { content: ''; }
+    .member-card .toy-trigger::after { content: none; }
+    .member-card .toy-trigger > img {
+      display: block; width: 100%; height: auto; aspect-ratio: 1;
+      object-fit: contain; padding: 0; margin: 0 auto 14px;
+      background: transparent !important; border: 0 !important;
+      border-radius: 0 !important; box-shadow: none !important;
+      outline: none; filter: none !important; clip-path: none;
+      transition: transform 180ms ease;
+    }
+    .member-card .toy-name { display: block; padding: 8px 4px; }
+    .member-card .toy-name::after { content: ' +'; }
+    .member-card details[open] .toy-name::after { content: ' −'; }
+    .member-card .toy-trigger:focus-visible { outline: 2px dashed #477694; outline-offset: 6px; }
+    @media (hover: hover) {
+      .member-card .toy-trigger:hover > img { transform: translateY(-3px); }
+      .member-card .toy-trigger:hover .toy-name { text-decoration: underline; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .member-card .toy-trigger > img { transition: none; transform: none !important; }
+    }
+  </style>
 </head>
 <body>
   <!-- Original vector doodles. The filter creates broken, grainy wax-pencil marks. -->
@@ -97,7 +134,7 @@
 
       <img
         class="bouncing-toy toy-left"
-        src="assets/images/individual/bluebunny.jpg"
+        src="assets/images/individual/bluebunny.png"
         alt="Blue Bunny celebrating"
       >
 
@@ -109,7 +146,7 @@
 
       <img
         class="bouncing-toy toy-right"
-        src="assets/images/individual/bear.jpg"
+        src="assets/images/individual/bear.png"
         alt="Brown Bear celebrating"
       >
     </section>
@@ -135,19 +172,19 @@
       </figure>
       <section class="special-members" aria-labelledby="bunny-family-members">
         <h3 id="bunny-family-members" class="crayon-subtitle">Special Members</h3>
-        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
+        <p>Every soft friend has a story. Click a toy or its name to read its story. Click again to tuck it away.</p>
         <div class="member-grid"><article class="member-card">
-            <img src="assets/images/individual/largebunny.jpg" alt="The Thanksgiving Twins" loading="lazy">
-            <details><summary>The Thanksgiving Twins</summary><div class="member-story"><p class="member-fact">Thanksgiving, 2021</p><p>My boyfriend meant to send me one big bunny for Thanksgiving in 2021. He accidentally used his billing address as the shipping address, so the bunny arrived at his own home. He ordered another one for me, and that is how we ended up with two. A little address mix-up became a pair we could share.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/largebunny.png" alt="The Thanksgiving Twins" loading="lazy"><span class="toy-name">The Thanksgiving Twins</span></summary><div class="member-story"><p class="member-fact">Thanksgiving, 2021</p><p>My boyfriend meant to send me one big bunny for Thanksgiving in 2021. He accidentally used his billing address as the shipping address, so the bunny arrived at his own home. He ordered another one for me, and that is how we ended up with two. A little address mix-up became a pair we could share.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/bluebunny.jpg" alt="Blue Bunny" loading="lazy">
-            <details><summary>Blue Bunny</summary><div class="member-story"><p class="member-fact">A birthday gift at fourteen</p><p>My best friend from middle school gave me this bunny for my fourteenth birthday, before I left China to attend high school in the United States. I gave her a stuffed animal too, so we each had a soft friend to keep. This bunny reminds me of her and the friendship I carried with me when I moved away.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/bluebunny.png" alt="Blue Bunny" loading="lazy"><span class="toy-name">Blue Bunny</span></summary><div class="member-story"><p class="member-fact">A birthday gift at fourteen</p><p>My best friend from middle school gave me this bunny for my fourteenth birthday, before I left China to attend high school in the United States. I gave her a stuffed animal too, so we each had a soft friend to keep. This bunny reminds me of her and the friendship I carried with me when I moved away.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/greybunny.jpg" alt="My Named Bunny" loading="lazy">
-            <details><summary>My Named Bunny</summary><div class="member-story"><p class="member-fact">The beginning of us</p><p>My boyfriend gave me this bunny when we first got together. It has my name on it, which makes it feel especially mine. It brings me back to those early days of our relationship and the small gestures that made them special.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/greybunny.png" alt="My Named Bunny" loading="lazy"><span class="toy-name">My Named Bunny</span></summary><div class="member-story"><p class="member-fact">The beginning of us</p><p>My boyfriend gave me this bunny when we first got together. It has my name on it, which makes it feel especially mine. It brings me back to those early days of our relationship and the small gestures that made them special.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/letterbunny.jpg" alt="Letter Bunny" loading="lazy">
-            <details><summary>Letter Bunny</summary><div class="member-story"><p class="member-fact">A little messenger</p><p>This bunny carries a letter my boyfriend wrote to me. I think it was a Valentine’s Day gift. The occasion is a little blurry, but the letter is what makes this bunny special: a soft little keeper of his words.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/letterbunny.png" alt="Letter Bunny" loading="lazy"><span class="toy-name">Letter Bunny</span></summary><div class="member-story"><p class="member-fact">A little messenger</p><p>This bunny carries a letter my boyfriend wrote to me. I think it was a Valentine’s Day gift. The occasion is a little blurry, but the letter is what makes this bunny special: a soft little keeper of his words.</p></div></details>
           </article></div>
       </section>
     </div>
@@ -165,10 +202,10 @@
       </figure>
       <section class="special-members" aria-labelledby="dragon-family-members">
         <h3 id="dragon-family-members" class="crayon-subtitle">Special Members</h3>
-        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
+        <p>Every soft friend has a story. Click a toy or its name to read its story. Click again to tuck it away.</p>
         <div class="member-grid"><article class="member-card">
-            <img src="assets/images/individual/blackdragon.jpg" alt="Black Dragon" loading="lazy">
-            <details><summary>Black Dragon</summary><div class="member-story"><p class="member-fact">My last Children’s Day gift</p><p>My mom gave me this dragon when I was around sixteen. It was the last Children’s Day gift I received from her. Whenever I see it, I remember being somewhere between childhood and growing up, still receiving a toy from my mom.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/blackdragon.png" alt="Black Dragon"><span class="toy-name">Black Dragon</span></summary><div class="member-story"><p class="member-fact">My last Children’s Day gift</p><p>My mom gave me this dragon when I was around sixteen. It was the last Children’s Day gift I received from her. Whenever I see it, I remember being somewhere between childhood and growing up, still receiving a toy from my mom.</p></div></details>
           </article></div>
       </section>
     </div>
@@ -186,13 +223,13 @@
       </figure>
       <section class="special-members" aria-labelledby="food-family-members">
         <h3 id="food-family-members" class="crayon-subtitle">Special Members</h3>
-        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
+        <p>Every soft friend has a story. Click a toy or its name to read its story. Click again to tuck it away.</p>
         <div class="member-grid"><article class="member-card">
-            <img src="assets/images/individual/coconut.jpg" alt="Coconut" loading="lazy">
-            <details><summary>Coconut</summary><div class="member-story"><p class="member-fact">A small travel companion</p><p>I love traveling to islands and places like Indonesia, and this coconut has come along with me. It reminds me of those trips and the feeling of being on vacation. A little bit of that holiday comes home with it.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/coconut.png" alt="Coconut" loading="lazy"><span class="toy-name">Coconut</span></summary><div class="member-story"><p class="member-fact">A small travel companion</p><p>I love traveling to islands and places like Indonesia, and this coconut has come along with me. It reminds me of those trips and the feeling of being on vacation. A little bit of that holiday comes home with it.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/stirfriedpotato.jpg" alt="Potato &amp; Pepper" loading="lazy">
-            <details><summary>Potato &amp; Pepper</summary><div class="member-story"><p class="member-fact">A taste of high school</p><p>I bought these for myself because I love stir-fried potatoes with peppers. I cooked that dish for myself often during high school. These two bring me back to those familiar meals and the everyday routines of that time.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/stirfriedpotato.png" alt="Potato &amp; Pepper" loading="lazy"><span class="toy-name">Potato &amp; Pepper</span></summary><div class="member-story"><p class="member-fact">A taste of high school</p><p>I bought these for myself because I love stir-fried potatoes with peppers. I cooked that dish for myself often during high school. These two bring me back to those familiar meals and the everyday routines of that time.</p></div></details>
           </article></div>
       </section>
     </div>
@@ -210,13 +247,13 @@
       </figure>
       <section class="special-members" aria-labelledby="bear-family-members">
         <h3 id="bear-family-members" class="crayon-subtitle">Special Members</h3>
-        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
+        <p>Every soft friend has a story. Click a toy or its name to read its story. Click again to tuck it away.</p>
         <div class="member-grid"><article class="member-card">
-            <img src="assets/images/individual/bear.jpg" alt="Anniversary Bear" loading="lazy">
-            <details><summary>Anniversary Bear</summary><div class="member-story"><p class="member-fact">Our first anniversary</p><p>For our first anniversary, my boyfriend and I went to a toy store and made two bears together. This bear has a partner, just like I do. It reminds me of choosing and making something together to celebrate our first year.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/bear.png" alt="Anniversary Bear" loading="lazy"><span class="toy-name">Anniversary Bear</span></summary><div class="member-story"><p class="member-fact">Our first anniversary</p><p>For our first anniversary, my boyfriend and I went to a toy store and made two bears together. This bear has a partner, just like I do. It reminds me of choosing and making something together to celebrate our first year.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/oldbear.jpg" alt="Old Bear" loading="lazy">
-            <details><summary>Old Bear</summary><div class="member-story"><p class="member-fact">A childhood passed into my care</p><p>This was my boyfriend’s stuffed bear when he was a child, before he gave it to me. It holds a part of his life from before we knew each other. Keeping it close feels like caring for a little piece of his childhood.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/oldbear.png" alt="Old Bear" loading="lazy"><span class="toy-name">Old Bear</span></summary><div class="member-story"><p class="member-fact">A childhood passed into my care</p><p>This was my boyfriend’s stuffed bear when he was a child, before he gave it to me. It holds a part of his life from before we knew each other. Keeping it close feels like caring for a little piece of his childhood.</p></div></details>
           </article></div>
       </section>
     </div>
@@ -234,16 +271,15 @@
       </figure>
       <section class="special-members" aria-labelledby="other-mammals-members">
         <h3 id="other-mammals-members" class="crayon-subtitle">Special Members</h3>
-        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
+        <p>Every soft friend has a story. Click a toy or its name to read its story. Click again to tuck it away.</p>
         <div class="member-grid"><article class="member-card">
-            <img src="assets/images/individual/cola.jpg" alt="Koala" loading="lazy">
-            <details><summary>Koala</summary><div class="member-story"><p class="member-fact">Another keeper of words</p><p>This koala holds a letter my boyfriend wrote to me. I love that the words have a little companion of their own. Seeing it reminds me of the person who wrote them and the care behind the gift.</p></div></details>
+            <details><summary class="toy-trigger"><img src="assets/images/individual/cola.png" alt="Koala" loading="lazy"><span class="toy-name">Koala</span></summary><div class="member-story"><p class="member-fact">Another keeper of words</p><p>This koala holds a letter my boyfriend wrote to me. I love that the words have a little companion of their own. Seeing it reminds me of the person who wrote them and the care behind the gift.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/dog.jpg" alt="The Sweater Dogs" loading="lazy">
-            <details><summary>The Sweater Dogs</summary><div class="member-story"><p class="member-fact">Made for the two of us</p><p>I personalized these dogs’ sweaters with my name and my boyfriend’s name. They belong together as a pair. Making something just for us turned two little dogs into a keepsake of our relationship.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/dog.png" alt="The Sweater Dogs" loading="lazy"><span class="toy-name">The Sweater Dogs</span></summary><div class="member-story"><p class="member-fact">Made for the two of us</p><p>I personalized these dogs’ sweaters with my name and my boyfriend’s name. They belong together as a pair. Making something just for us turned two little dogs into a keepsake of our relationship.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/mouse.jpg" alt="The Homebody Pair" loading="lazy">
-            <details><summary>The Homebody Pair</summary><div class="member-story"><p class="member-fact">Our little “mouse people” joke</p><p>These two remind me of my boyfriend and me. We joke about being “mouse people”: quiet homebodies who like keeping a low profile and enjoying our own little world. This pair feels like a tiny portrait of the two of us, happily staying in.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/mouse.png" alt="The Homebody Pair" loading="lazy"><span class="toy-name">The Homebody Pair</span></summary><div class="member-story"><p class="member-fact">Our little “mouse people” joke</p><p>These two remind me of my boyfriend and me. We joke about being “mouse people”: quiet homebodies who like keeping a low profile and enjoying our own little world. This pair feels like a tiny portrait of the two of us, happily staying in.</p></div></details>
           </article></div>
       </section>
     </div>
@@ -261,16 +297,16 @@
       </figure>
       <section class="special-members" aria-labelledby="diverse-creatures-members">
         <h3 id="diverse-creatures-members" class="crayon-subtitle">Special Members</h3>
-        <p>Every soft friend has a story. Click a name to read it, and click again to tuck it away.</p>
+        <p>Every soft friend has a story. Click a toy or its name to read its story. Click again to tuck it away.</p>
         <div class="member-grid"><article class="member-card">
-            <img src="assets/images/individual/flower.jpg" alt="Graduation Flowers" loading="lazy">
-            <details><summary>Graduation Flowers</summary><div class="member-story"><p class="member-fact">High school, by the Tennessee River</p><p>I held this flower bouquet in my high school senior photos. Whenever I see it, I think of my high school and the Tennessee River. It keeps that moment of finishing one chapter of my life close to me.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/flower.png" alt="Graduation Flowers" loading="lazy"><span class="toy-name">Graduation Flowers</span></summary><div class="member-story"><p class="member-fact">High school, by the Tennessee River</p><p>I held this flower bouquet in my high school senior photos. Whenever I see it, I think of my high school and the Tennessee River. It keeps that moment of finishing one chapter of my life close to me.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/letter.jpg" alt="The Anniversary Letter" loading="lazy">
-            <details><summary>The Anniversary Letter</summary><div class="member-story"><p class="member-fact">Four years together</p><p>This letter is connected to the one I wrote to my boyfriend for our four-year anniversary. It reminds me of putting our years together into words and taking time to tell him what they meant to me.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/letter.png" alt="The Anniversary Letter" loading="lazy"><span class="toy-name">The Anniversary Letter</span></summary><div class="member-story"><p class="member-fact">Four years together</p><p>This letter is connected to the one I wrote to my boyfriend for our four-year anniversary. It reminds me of putting our years together into words and taking time to tell him what they meant to me.</p></div></details>
           </article><article class="member-card">
-            <img src="assets/images/individual/rose.jpg" alt="Valentine’s Roses" loading="lazy">
-            <details><summary>Valentine’s Roses</summary><div class="member-story"><p class="member-fact">Flowers I can keep</p><p>My boyfriend gave me these roses for Valentine’s Day. I get to keep them long after the day itself, along with the memory of receiving them. They have found a permanent place in this very soft family.</p></div></details>
+            
+            <details><summary class="toy-trigger"><img src="assets/images/individual/rose.png" alt="Valentine’s Roses" loading="lazy"><span class="toy-name">Valentine’s Roses</span></summary><div class="member-story"><p class="member-fact">Flowers I can keep</p><p>My boyfriend gave me these roses for Valentine’s Day. I get to keep them long after the day itself, along with the memory of receiving them. They have found a permanent place in this very soft family.</p></div></details>
           </article></div>
       </section>
     </div>
