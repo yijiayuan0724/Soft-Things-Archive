@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+/* Keep the ending hidden even though its normal layout uses display: grid. */
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -521,6 +526,66 @@ summary:hover,summary:focus-visible { box-shadow: none; transform: none; }
 :focus-visible { outline: 3px solid #42759b; outline-offset: 7px; }
 body:has(.family-page:target) > main,body:has(.family-page:target) > header,body:has(.family-page:target) > footer { visibility: hidden; }
 
+/* Design persona: a quiet friend who shares a memory when invited.
+   Keep the portrait prominent, offer a gentle response, and let the reader
+   choose when to open and close the story. No automatic card animation. */
+.member-grid { gap: 48px 32px; }
+.member-card { --member-accent: #a94f72; --member-paper: #fff2f5; }
+.member-card:nth-child(even) { --member-accent: #477694; --member-paper: #eef6fb; }
+.member-card:nth-child(n) { transform: none; }
+.member-card > img, .member-card > .portrait-placeholder {
+  object-fit: contain;
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+.member-card details { padding-top: 14px; }
+.member-card summary {
+  position: relative;
+  min-height: 48px;
+  padding: 10px 30px 10px 10px;
+  color: var(--member-accent);
+  font-size: 25px;
+  line-height: 1.4;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 220ms ease, background-color 220ms ease;
+}
+.member-card summary::after {
+  position: absolute;
+  right: 9px;
+  top: 10px;
+  content: '+';
+  font-size: 26px;
+}
+.member-card details[open] summary::after { content: '−'; }
+.member-card summary:hover, .member-card summary:focus-visible {
+  text-decoration-color: var(--member-accent);
+  background: var(--member-paper);
+}
+.member-card summary:focus-visible { outline: 2px solid var(--member-accent); outline-offset: 4px; }
+.member-card:focus-within > img, .member-card:focus-within > .portrait-placeholder {
+  transform: translateY(-3px);
+}
+@media (hover: hover) {
+  .member-card:hover > img, .member-card:hover > .portrait-placeholder { transform: translateY(-3px); }
+  .member-card:hover summary { text-decoration-color: var(--member-accent); }
+}
+.member-card details[open] summary { background: var(--member-paper); text-decoration-color: var(--member-accent); }
+.member-card .member-story {
+  margin-top: 14px;
+  padding: 20px 18px 12px;
+  background: var(--member-paper);
+  border-left: 2px solid var(--member-accent);
+  border-radius: 2px 12px 10px 3px;
+  color: #574b46;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.member-card .member-fact { color: var(--member-accent); font-family: 'Gaegu', cursive; font-size: 21px; }
+.member-card details[open] .member-story { animation: memory-appear 220ms ease-out; }
+.special-members > p { max-width: 550px; margin: 18px auto 32px; }
+@keyframes memory-appear { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
 @keyframes soft-bounce {
   0%, 100% { transform: translateY(0) rotate(-2deg); }
   50% { transform: translateY(-18px) rotate(2deg); }
@@ -595,3 +660,22 @@ body:has(.family-page:target) > main,body:has(.family-page:target) > header,body
     transition: none !important;
   }
 }
+
+/* Family portraits: the same paper-and-tape frame as the full family photo. */
+.family-grid { align-items: start; }
+.family-card .directory-photo { margin: 0; padding: 12px 12px 0; }
+.directory-photo::before { content: ''; position: absolute; z-index: 1; width: 100px; height: 26px; top: -13px; left: calc(50% - 50px); background: #f4d88299; transform: rotate(-5deg); clip-path: polygon(2% 0,98% 3%,100% 85%,95% 100%,3% 93%,0 20%); }
+.family-card .directory-photo img { display: block; width: 100%; height: auto; border: 0; border-radius: 0; box-shadow: none; object-fit: contain; background: #fffef9; }
+.family-card.landscape .directory-photo img { aspect-ratio: 4 / 3; }
+.family-card.portrait .directory-photo img { aspect-ratio: 3 / 4; }
+.directory-photo figcaption { margin: 0; padding: 18px 4px; color: var(--label); font: 28px/1.3 'Schoolbell', cursive; }
+.family-card:focus-visible { outline: 3px solid #477694; outline-offset: 8px; }
+.family-group-photo.landscape { max-width: 850px; }
+.family-group-photo.portrait { max-width: 500px; }
+.family-group-photo img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; }
+.member-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: 1120px; margin-inline: auto; }
+.member-card { width: 100%; max-width: 340px; justify-self: center; }
+.member-card > img { width: 100%; aspect-ratio: 1; height: auto; object-fit: contain; }
+.ending[hidden] { display: none !important; }
+@media (max-width: 580px) { .member-grid { grid-template-columns: 1fr; } .family-group-photo.portrait { max-width: 100%; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
