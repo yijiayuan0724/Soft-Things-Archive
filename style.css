@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Schoolbell&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700&family=Schoolbell&display=swap');
 
 :root {
   --cream: #fff9eb;
@@ -15,9 +15,6 @@
   --shadow: rgba(92, 81, 76, 0.14);
 }
 
-* {
-  box-sizing: border-box;
-}
 
 /* Keep the ending hidden even though its normal layout uses display: grid. */
 [hidden] {
@@ -675,7 +672,296 @@ body:has(.family-page:target) > main,body:has(.family-page:target) > header,body
 .family-group-photo img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; }
 .member-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: 1120px; margin-inline: auto; }
 .member-card { width: 100%; max-width: 340px; justify-self: center; }
-.member-card > img { width: 100%; aspect-ratio: 1; height: auto; object-fit: contain; }
+.member-card > img { width: 100%; aspect-ratio: 1; height: auto; object-fit: contain; border: 0; border-radius: 0; background: transparent; padding: 0; box-shadow: none; filter: none; }
+.bouncing-toy { border: 0; border-radius: 0; background: transparent; box-shadow: none; filter: none; }
 .ending[hidden] { display: none !important; }
 @media (max-width: 580px) { .member-grid { grid-template-columns: 1fr; } .family-group-photo.portrait { max-width: 100%; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+
+/* ---------- Responsive Flexbox layout ---------- */
+
+.family-grid,
+.member-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px 32px;
+}
+
+/* Three family portraits per row */
+.family-grid > .family-card {
+  flex: 0 0 calc((100% - 64px) / 3);
+  min-width: 0;
+}
+
+/* Special members wrap naturally */
+.member-grid > .member-card {
+  flex: 1 1 230px;
+  width: auto;
+  max-width: 340px;
+  min-width: 0;
+}
+
+.photo-placeholder,
+.portrait-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Width adjustments when using the default content-box */
+.full-family-photo,
+.family-group-photo {
+  width: min(76%, calc(100% - 24px));
+}
+
+.family-card .directory-photo {
+  width: auto;
+}
+
+.member-card .toy-trigger {
+  width: auto;
+}
+
+.site-header {
+  width: auto;
+  max-width: 1180px;
+}
+
+
+/* ---------- Clear, rounded story typography ---------- */
+
+.member-card .member-story {
+  font-family:
+    "Nunito",
+    "Avenir Next",
+    "Trebuchet MS",
+    sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: #554d49;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.member-card .member-story p {
+  margin: 0 0 1em;
+}
+
+.member-card .member-story .member-fact {
+  font-family:
+    "Nunito",
+    "Avenir Next",
+    "Trebuchet MS",
+    sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #a35d7a;
+}
+
+
+/* ---------- Frameless floating toys at the ending ---------- */
+
+.ending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 45px);
+  width: auto;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.ending-message {
+  flex: 1 1 360px;
+  min-width: 0;
+  max-width: 600px;
+}
+
+.ending .bouncing-toy {
+  flex: 0 1 180px;
+  width: clamp(100px, 17vw, 180px);
+  max-width: 180px;
+  min-width: 0;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: none;
+
+  animation: toy-float 3.5s ease-in-out infinite;
+}
+
+.ending .toy-right {
+  animation-delay: -1.7s;
+}
+
+@keyframes toy-float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translate(8px, -20px) rotate(3deg);
+  }
+}
+
+
+/* ---------- Scattered stickers, not divider rows ---------- */
+
+/* These containers reserve narrow side gutters for stickers. */
+.home-intro,
+.family-directory,
+.family-page-inner {
+  position: relative;
+  isolation: isolate;
+  width: min(1180px, calc(100% - 112px));
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+/* The new layer replaces the three old opening-only stickers. */
+.home-intro > .sticker {
+  display: none;
+}
+
+.scatter-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.scatter-sticker {
+  position: absolute;
+  display: block;
+  width: 140px;
+  height: 170px;
+  overflow: visible;
+  opacity: 0.9;
+  transform:
+    translateX(var(--sticker-shift))
+    rotate(var(--tilt, 0deg));
+}
+
+.scatter-sticker:nth-child(odd) {
+  --sticker-shift: -65%;
+}
+
+.scatter-sticker:nth-child(even) {
+  --sticker-shift: 65%;
+}
+
+/* Different heights and rotations give a loose scrapbook feel. */
+.scatter-sticker:nth-child(1) {
+  left: 2px;
+  top: 4%;
+  --tilt: -16deg;
+}
+
+.scatter-sticker:nth-child(2) {
+  right: 2px;
+  top: 19%;
+  --tilt: 13deg;
+}
+
+.scatter-sticker:nth-child(3) {
+  left: 0;
+  top: 39%;
+  --tilt: -8deg;
+}
+
+.scatter-sticker:nth-child(4) {
+  right: 1px;
+  top: 56%;
+  --tilt: 18deg;
+}
+
+.scatter-sticker:nth-child(5) {
+  left: 3px;
+  top: 75%;
+  --tilt: 11deg;
+}
+
+.scatter-sticker:nth-child(6) {
+  right: 3px;
+  top: 91%;
+  --tilt: -14deg;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  .family-grid > .family-card {
+    flex-basis: calc((100% - 32px) / 2);
+  }
+}
+
+
+/* ---------- Phone ---------- */
+
+@media (max-width: 580px) {
+  .home-intro,
+  .family-directory,
+  .family-page-inner {
+    width: calc(100% - 64px);
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .scatter-sticker {
+    width: 60px;
+    height: 85px;
+  }
+
+  .family-grid > .family-card {
+    flex-basis: 100%;
+  }
+
+  .member-grid > .member-card {
+    flex-basis: 100%;
+  }
+
+  .full-family-photo,
+  .family-group-photo {
+    width: calc(100% - 24px);
+  }
+
+  .ending {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-height: 0;
+    padding: 60px 24px;
+  }
+
+  .ending-message {
+    flex: 0 1 auto;
+  }
+
+  .ending .bouncing-toy {
+    flex: 0 1 auto;
+    width: 115px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ending .bouncing-toy {
+    animation: none;
+  }
+}

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A Very Serious Archive of Very Soft Things</title>
-  <link rel="stylesheet" href="style.css?v=family-memories-3">
+  <link rel="stylesheet" href="style.css?v=scattered-stickers-4">
 
   <!-- Scoped overrides keep individual toys frameless with your existing stylesheet. -->
   <style>
@@ -66,6 +66,64 @@
         </g>
       </symbol>
       <symbol id="star-doodle" viewBox="0 0 100 100"><path filter="url(#wax)" d="M50 8 L61 36 L93 38 L68 58 L76 91 L49 71 L21 89 L31 57 L8 36 L39 36 Z" fill="#f8e473" stroke="#e2b748" stroke-width="5" stroke-linejoin="round"/></symbol>
+      <symbol id="dog-doodle" viewBox="0 0 200 150">
+        <g
+          filter="url(#wax)"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <!-- Face -->
+          <path
+            d="M46 52
+              Q60 24 101 34
+              Q143 22 158 55
+              Q177 78 156 112
+              Q133 139 93 128
+              Q49 132 33 100
+              Q20 73 46 52Z"
+            fill="#edc18d"
+            stroke="#bd875b"
+            stroke-width="6"
+          />
+
+          <!-- Floppy ears -->
+          <path
+            d="M49 48 Q18 27 14 64 Q10 97 42 91Z
+              M151 48 Q179 27 187 64 Q194 98 162 92Z"
+            fill="#b87b5f"
+            stroke="#a76b53"
+            stroke-width="5"
+          />
+
+          <!-- Eyes -->
+          <circle cx="73" cy="74" r="5" fill="#62514b"/>
+          <circle cx="127" cy="74" r="5" fill="#62514b"/>
+
+          <!-- Nose and smile -->
+          <path
+            d="M91 87 Q100 81 109 87 Q106 99 100 99
+              Q94 97 91 87Z"
+            fill="#785648"
+          />
+
+          <path
+            d="M100 98 L100 105
+              M100 105 Q87 119 79 106
+              M100 105 Q113 119 121 106"
+            fill="none"
+            stroke="#785648"
+            stroke-width="4"
+          />
+
+          <!-- Pink cheeks -->
+          <path
+            d="M56 94 L68 97 M133 97 L145 94"
+            fill="none"
+            stroke="#e89da8"
+            stroke-width="7"
+          />
+        </g>
+      </symbol>
     </defs>
   </svg>
   <header class="site-header">
@@ -146,7 +204,7 @@
 
       <img
         class="bouncing-toy toy-right"
-        src="assets/images/individual/bear.png"
+        src="assets/images/individual/flower.png"
         alt="Brown Bear celebrating"
       >
     </section>
@@ -341,5 +399,56 @@
       updateVisits();
     })();
   </script>
+<script>
+  (() => {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+
+    const symbols = [
+      "flower-doodle",
+      "bow-doodle",
+      "dog-doodle",
+      "star-doodle"
+    ];
+
+    const containers = document.querySelectorAll(
+      ".home-intro, .family-directory, .family-page-inner"
+    );
+
+    containers.forEach((container, pageIndex) => {
+      // Avoid adding the same decorations twice.
+      if (container.querySelector(".scatter-layer")) return;
+
+      const layer = document.createElement("div");
+      layer.className = "scatter-layer";
+      layer.setAttribute("aria-hidden", "true");
+
+      for (let index = 0; index < 6; index++) {
+        const svg = document.createElementNS(
+          svgNamespace,
+          "svg"
+        );
+
+        svg.classList.add("scatter-sticker");
+        svg.setAttribute("focusable", "false");
+
+        const use = document.createElementNS(
+          svgNamespace,
+          "use"
+        );
+
+        // Each family gets a slightly different arrangement.
+        const symbol = symbols[
+          (index + pageIndex) % symbols.length
+        ];
+
+        use.setAttribute("href", "#" + symbol);
+        svg.appendChild(use);
+        layer.appendChild(svg);
+      }
+
+      container.prepend(layer);
+    });
+  })();
+</script>
 </body>
 </html>
