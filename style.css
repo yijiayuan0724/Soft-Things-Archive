@@ -733,16 +733,14 @@ body:has(.family-page:target) > main,body:has(.family-page:target) > header,body
 
 /* ---------- Clear, rounded story typography ---------- */
 
+/* Cute handwritten story typography */
+
 .member-card .member-story {
-  font-family:
-    "Nunito",
-    "Avenir Next",
-    "Trebuchet MS",
-    sans-serif;
-  font-size: 17px;
+  font-family: "Gaegu", "Comic Sans MS", cursive;
+  font-size: 23px;
   font-weight: 400;
-  line-height: 1.75;
-  letter-spacing: 0.01em;
+  line-height: 1.55;
+  letter-spacing: 0;
   color: #554d49;
   text-align: left;
   overflow-wrap: break-word;
@@ -753,14 +751,10 @@ body:has(.family-page:target) > main,body:has(.family-page:target) > header,body
 }
 
 .member-card .member-story .member-fact {
-  font-family:
-    "Nunito",
-    "Avenir Next",
-    "Trebuchet MS",
-    sans-serif;
-  font-size: 15px;
+  font-family: "Gaegu", "Comic Sans MS", cursive;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.4;
   color: #a35d7a;
 }
 
