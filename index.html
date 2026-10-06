@@ -43,7 +43,124 @@
     }
   </style>
 </head>
+
+<script>
+(() => {
+  const intro = document.getElementById("letter-intro");
+  const envelope = document.getElementById("open-invitation");
+  const letter = document.getElementById("invitation-letter");
+  const enterButton = document.getElementById("enter-soft-family");
+
+  if (!intro || !envelope || !letter || !enterButton) return;
+
+  let opened = false;
+  let leaving = false;
+  let finished = false;
+
+  // Temporarily prevent interaction with the website underneath.
+  const websiteElements = Array.from(document.body.children)
+    .filter(element =>
+      element !== intro &&
+      !["SCRIPT", "STYLE", "LINK"].includes(element.tagName)
+    );
+
+  const originalStates = websiteElements.map(element => ({
+    element,
+    inert: element.inert
+  }));
+
+  websiteElements.forEach(element => {
+    element.inert = true;
+  });
+
+  document.documentElement.classList.add("invitation-lock");
+
+  envelope.addEventListener("click", () => {
+    if (opened) return;
+    opened = true;
+
+    intro.classList.add("is-open");
+    envelope.setAttribute("aria-expanded", "true");
+    envelope.tabIndex = -1;
+
+    letter.inert = false;
+
+    // Move keyboard focus onto the invitation's enter button.
+    enterButton.focus({ preventScroll: true });
+  });
+
+  function finishOpening() {
+    if (finished) return;
+    finished = true;
+
+    intro.remove();
+    document.documentElement.classList.remove("invitation-lock");
+
+    originalStates.forEach(state => {
+      state.element.inert = state.inert;
+    });
+  }
+
+  enterButton.addEventListener("click", () => {
+    if (leaving) return;
+    leaving = true;
+
+    intro.classList.add("is-leaving");
+
+    intro.addEventListener("transitionend", event => {
+      if (event.target === intro && event.propertyName === "opacity") {
+        finishOpening();
+      }
+    });
+
+    setTimeout(finishOpening, 1250);
+  });
+})();
+</script>
+
 <body>
+  <!-- Opening envelope -->
+  <div id="letter-intro" role="dialog" aria-label="An invitation to our soft family">
+    <div class="invitation">
+
+      <div class="invitation-letter" id="invitation-letter" inert>
+        <span class="letter-star" aria-hidden="true">✧</span>
+
+        <p>Did you have a<br>childhood plushie?</p>
+
+        <p>What does it<br>look like?</p>
+
+        <button id="enter-soft-family" type="button">
+          Meet our soft family →
+        </button>
+
+        <span class="letter-heart" aria-hidden="true">♡</span>
+      </div>
+
+      <button
+        class="invitation-envelope"
+        id="open-invitation"
+        type="button"
+        aria-label="Open the invitation"
+        aria-expanded="false"
+        aria-controls="invitation-letter"
+      >
+        <span class="envelope-back" aria-hidden="true"></span>
+        <span class="envelope-flap" aria-hidden="true"></span>
+        <span class="envelope-front" aria-hidden="true"></span>
+
+        <img
+          class="envelope-sticker"
+          src="assets/images/individual/letter.png"
+          alt=""
+        >
+
+        <span class="envelope-seal" aria-hidden="true">♡</span>
+      </button>
+
+    </div>
+  </div>
+
   <!-- Original vector doodles. The filter creates broken, grainy wax-pencil marks. -->
   <svg class="drawing-definitions" aria-hidden="true" width="0" height="0">
     <defs>
