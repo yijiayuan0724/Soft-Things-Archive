@@ -1320,3 +1320,327 @@ svg {
     max-width: 120px;
   }
 }
+
+/* ===== Opening envelope invitation ===== */
+
+html.invitation-lock,
+html.invitation-lock body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#letter-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--cream, #fffbed);
+  overflow: hidden;
+
+  opacity: 1;
+  transition: opacity 1.1s ease;
+}
+
+#letter-intro.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#letter-intro .invitation {
+  position: relative;
+  width: min(380px, 82vw);
+  height: 240px;
+  perspective: 1000px;
+}
+
+/* The paper inside the envelope */
+#letter-intro .invitation-letter {
+  position: absolute;
+  left: 5%;
+  bottom: 12px;
+  z-index: 2;
+
+  box-sizing: border-box;
+  width: 90%;
+  height: 350px;
+  padding: 32px 18px 22px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+
+  background: #fffdf5;
+  border: 2px solid #d6bca4;
+  border-radius: 5px 8px 4px 7px;
+  box-shadow: 0 8px 20px rgb(112 83 65 / 10%);
+
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(95px) scale(.88);
+
+  transition:
+    transform 1s ease,
+    opacity .5s ease,
+    visibility 0s linear 1s;
+}
+
+#letter-intro .invitation-letter p {
+  margin: 0;
+
+  font-family: "Gaegu", "Schoolbell", cursive;
+  font-size: clamp(25px, 6vw, 34px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+#letter-intro .invitation-letter p:first-of-type {
+  color: #a9506b;
+}
+
+#letter-intro .invitation-letter p:nth-of-type(2) {
+  color: #527b94;
+}
+
+#letter-intro #enter-soft-family {
+  padding: 8px 5px;
+  border: none;
+  border-bottom: 2px dashed #92a878;
+
+  background: transparent;
+  color: #59733d;
+
+  font-family: "Gaegu", "Schoolbell", cursive;
+  font-size: clamp(23px, 5.5vw, 29px);
+  font-weight: 700;
+  line-height: 1.2;
+
+  cursor: pointer;
+}
+
+#letter-intro #enter-soft-family:hover {
+  color: #a9506b;
+}
+
+/* Envelope button */
+#letter-intro .invitation-envelope {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+  transform: rotate(-4deg);
+  transition: transform .6s ease;
+}
+
+#letter-intro .invitation-envelope:hover {
+  transform: rotate(-1deg) translateY(-5px);
+}
+
+#letter-intro button:focus-visible {
+  outline: 3px dashed #648da5;
+  outline-offset: 8px;
+}
+
+#letter-intro .envelope-back {
+  position: absolute;
+  inset: 0;
+
+  background: #ead4be;
+  border: 2px solid #c69c82;
+  border-radius: 8px;
+}
+
+/* Folding top flap */
+#letter-intro .envelope-flap {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  background: #f4decd;
+  clip-path: polygon(0 0, 100% 0, 50% 57%);
+
+  transform-origin: top center;
+  backface-visibility: hidden;
+  transition: transform .7s ease;
+}
+
+/* Front pocket */
+#letter-intro .envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+
+  background: #f6e5d5;
+  clip-path: polygon(0 0, 50% 53%, 100% 0, 100% 100%, 0 100%);
+
+  border-radius: 8px;
+}
+
+#letter-intro .envelope-sticker {
+  position: absolute;
+  left: 14px;
+  bottom: 10px;
+  z-index: 6;
+
+  width: 88px;
+  height: 90px;
+  object-fit: contain;
+
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+#letter-intro .envelope-seal {
+  position: absolute;
+  left: calc(50% - 24px);
+  top: calc(53% - 24px);
+  z-index: 7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+
+  background: #efbfd0;
+  color: #a9506b;
+  font-family: "Gaegu", cursive;
+  font-size: 35px;
+
+  transition: opacity .3s ease;
+}
+
+#letter-intro .letter-star,
+#letter-intro .letter-heart {
+  position: absolute;
+  font-family: "Gaegu", cursive;
+  font-size: 35px;
+  pointer-events: none;
+}
+
+#letter-intro .letter-star {
+  top: 8px;
+  right: 18px;
+  color: #bb923f;
+  transform: rotate(12deg);
+}
+
+#letter-intro .letter-heart {
+  bottom: 8px;
+  left: 18px;
+  color: #bd6d88;
+  transform: rotate(-15deg);
+}
+
+/* Open the flap, then lift out the letter */
+#letter-intro.is-open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+#letter-intro.is-open .envelope-seal {
+  opacity: 0;
+}
+
+#letter-intro.is-open .invitation-envelope {
+  transform: translateY(100px) rotate(3deg);
+  cursor: default;
+  pointer-events: none;
+}
+
+#letter-intro.is-open .invitation-letter {
+  z-index: 8;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-40px) rotate(-2deg);
+
+  transition:
+    transform 1s ease .45s,
+    opacity .6s ease .45s,
+    visibility 0s;
+}
+
+@media (max-height: 600px) {
+  #letter-intro .invitation {
+    height: 180px;
+  }
+
+  #letter-intro .invitation-letter {
+    height: 290px;
+    gap: 14px;
+    padding: 22px 14px;
+  }
+
+  #letter-intro.is-open .invitation-envelope {
+    transform: translateY(60px) rotate(3deg);
+  }
+
+  #letter-intro.is-open .invitation-letter {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+
+  #letter-intro .invitation-letter p {
+    font-size: 25px;
+  }
+
+  #letter-intro #enter-soft-family {
+    font-size: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #letter-intro,
+  #letter-intro * {
+    transition-duration: .01s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* Background music button */
+#music-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 1000000;
+
+  padding: 9px 16px;
+  border: 2px dashed #b87385;
+  border-radius: 24px;
+
+  background: var(--cream, #fffbed);
+  color: #79545e;
+
+  font-family: "Gaegu", "Nunito", sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+
+  cursor: pointer;
+}
+
+#music-toggle:hover {
+  background: #f8dce5;
+}
+
+#music-toggle:focus-visible {
+  outline: 3px solid #648da5;
+  outline-offset: 4px;
+}

@@ -44,81 +44,21 @@
   </style>
 </head>
 
-<script>
-(() => {
-  const intro = document.getElementById("letter-intro");
-  const envelope = document.getElementById("open-invitation");
-  const letter = document.getElementById("invitation-letter");
-  const enterButton = document.getElementById("enter-soft-family");
-
-  if (!intro || !envelope || !letter || !enterButton) return;
-
-  let opened = false;
-  let leaving = false;
-  let finished = false;
-
-  // Temporarily prevent interaction with the website underneath.
-  const websiteElements = Array.from(document.body.children)
-    .filter(element =>
-      element !== intro &&
-      !["SCRIPT", "STYLE", "LINK"].includes(element.tagName)
-    );
-
-  const originalStates = websiteElements.map(element => ({
-    element,
-    inert: element.inert
-  }));
-
-  websiteElements.forEach(element => {
-    element.inert = true;
-  });
-
-  document.documentElement.classList.add("invitation-lock");
-
-  envelope.addEventListener("click", () => {
-    if (opened) return;
-    opened = true;
-
-    intro.classList.add("is-open");
-    envelope.setAttribute("aria-expanded", "true");
-    envelope.tabIndex = -1;
-
-    letter.inert = false;
-
-    // Move keyboard focus onto the invitation's enter button.
-    enterButton.focus({ preventScroll: true });
-  });
-
-  function finishOpening() {
-    if (finished) return;
-    finished = true;
-
-    intro.remove();
-    document.documentElement.classList.remove("invitation-lock");
-
-    originalStates.forEach(state => {
-      state.element.inert = state.inert;
-    });
-  }
-
-  enterButton.addEventListener("click", () => {
-    if (leaving) return;
-    leaving = true;
-
-    intro.classList.add("is-leaving");
-
-    intro.addEventListener("transitionend", event => {
-      if (event.target === intro && event.propertyName === "opacity") {
-        finishOpening();
-      }
-    });
-
-    setTimeout(finishOpening, 1250);
-  });
-})();
-</script>
-
 <body>
+  <!-- Background music -->
+  <audio id="background-music" loop preload="auto">
+    <source src="assets/audio/beat.mp3" type="audio/mpeg">
+  </audio>
+
+  <button
+    id="music-toggle"
+    type="button"
+    aria-label="Play background music"
+    aria-pressed="false"
+  >
+    ♫ Music off
+  </button>
+
   <!-- Opening envelope -->
   <div id="letter-intro" role="dialog" aria-label="An invitation to our soft family">
     <div class="invitation">
@@ -567,5 +507,138 @@
     });
   })();
 </script>
+
+<script>
+(() => {
+  const intro = document.getElementById("letter-intro");
+  const envelope = document.getElementById("open-invitation");
+  const letter = document.getElementById("invitation-letter");
+  const enterButton = document.getElementById("enter-soft-family");
+
+  if (!intro || !envelope || !letter || !enterButton) return;
+
+  let opened = false;
+  let leaving = false;
+  let finished = false;
+
+  // Temporarily prevent interaction with the website underneath.
+  const websiteElements = Array.from(document.body.children)
+  .filter(element =>
+    element !== intro &&
+    element.id !== "music-toggle" &&
+    element.id !== "background-music" &&
+    !["SCRIPT", "STYLE", "LINK"].includes(element.tagName)
+  );
+
+  const originalStates = websiteElements.map(element => ({
+    element,
+    inert: element.inert
+  }));
+
+  websiteElements.forEach(element => {
+    element.inert = true;
+  });
+
+  document.documentElement.classList.add("invitation-lock");
+
+  envelope.addEventListener("click", () => {
+    if (opened) return;
+    opened = true;
+
+    intro.classList.add("is-open");
+    envelope.setAttribute("aria-expanded", "true");
+    envelope.tabIndex = -1;
+
+    letter.inert = false;
+
+    // Move keyboard focus onto the invitation's enter button.
+    enterButton.focus({ preventScroll: true });
+  });
+
+  function finishOpening() {
+    if (finished) return;
+    finished = true;
+
+    intro.remove();
+    document.documentElement.classList.remove("invitation-lock");
+
+    originalStates.forEach(state => {
+      state.element.inert = state.inert;
+    });
+  }
+
+  enterButton.addEventListener("click", () => {
+    if (leaving) return;
+    leaving = true;
+
+    intro.classList.add("is-leaving");
+
+    intro.addEventListener("transitionend", event => {
+      if (event.target === intro && event.propertyName === "opacity") {
+        finishOpening();
+      }
+    });
+
+    setTimeout(finishOpening, 1250);
+  });
+})();
+</script>
+
+<script>
+(() => {
+  const music = document.getElementById("background-music");
+  const toggle = document.getElementById("music-toggle");
+  const envelope = document.getElementById("open-invitation");
+
+  if (!music || !toggle) return;
+
+  // Gentle background volume: 0 = silent, 1 = maximum.
+  music.volume = 0.3;
+
+  function updateMusicButton() {
+    const playing = !music.paused;
+
+    toggle.textContent = playing
+      ? "♫ Music on"
+      : "♫ Music off";
+
+    toggle.setAttribute("aria-pressed", String(playing));
+    toggle.setAttribute(
+      "aria-label",
+      playing ? "Pause background music" : "Play background music"
+    );
+  }
+
+  function playMusic() {
+    music.play().catch(() => {
+      updateMusicButton();
+    });
+  }
+
+  // Start music when the visitor opens the envelope.
+  if (envelope) {
+    envelope.addEventListener("click", playMusic, { once: true });
+  }
+
+  // Allow visitors to pause or resume the music.
+  toggle.addEventListener("click", () => {
+    if (music.paused) {
+      playMusic();
+    } else {
+      music.pause();
+    }
+  });
+
+  music.addEventListener("play", updateMusicButton);
+  music.addEventListener("pause", updateMusicButton);
+  music.addEventListener("error", () => {
+    toggle.textContent = "♫ Music unavailable";
+    toggle.disabled = true;
+  });
+
+  updateMusicButton();
+})();
+</script>
+
 </body>
 </html>
